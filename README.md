@@ -1,6 +1,6 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
-<h3>Name: </h3>
-<h3>Register Number:     </h3>
+<h3>Name:MONISH . R </h3>
+<h3>Register Number: 212225230185    </h3>
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -52,8 +52,47 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>Insert a START node to the STACK</li>
  <li>Find its Successors Or neighbors and Check whether the node is visited or not</li>
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
-</ol></B>
+</ol></BR>
+ <h3>PROGRAM</h3>
+ 
+```
+from collections import defaultdict
+import networkx as nx
+import matplotlib.pyplot as plt
 
+graph=defaultdict(list)
+G=nx.Graph()
+nodes,edges=map(int,input().split())
+for i in range(edges):
+    u,v=map(str,input().split())
+    graph[u].append(v)
+    graph[v].append(u)
+    G.add_edge(u,v)
+nx.draw(G, with_labels=True, node_color="lightblue", edge_color="red", width=2, node_size=2000)
+plt.show()
+print(graph)
+
+#Depth First Search
+def dfs(graph, start, visited, path):
+    path.append(start)
+    visited[start] = True
+
+    for neighbour in graph[start]:
+        if not visited[neighbour]:
+            dfs(graph, neighbour, visited, path)
+
+    return path
+
+# input start node
+start = input()
+
+path = []
+visited = defaultdict(bool)
+traversepath = dfs(graph, start, visited, path)
+print("Depth First Search:")
+print(traversepath)
+
+```
 <hr>
 <h3>Sample Input</h3>
 <hr>
@@ -71,6 +110,7 @@ F H <BR>
 <h3>Sample Output</h3>
 <hr>
 ['A', 'B', 'E', 'D', 'C', 'G', 'F', 'H']
+<img width="1046" height="412" alt="image" src="https://github.com/user-attachments/assets/30ae6845-aeb7-495f-9f30-72a31ac48baa" />
 
 <hr>
 
@@ -87,6 +127,7 @@ F H <BR>
 <h3>Sample Output</h3>
 <hr>
 ['0', '1', '2', '3', '4']
+<img width="1032" height="522" alt="Screenshot 2026-07-27 102636" src="https://github.com/user-attachments/assets/979f4d6c-e7ab-4474-9cf3-2b8f31abe5d1" />
 
 <hr>
 <h3>Result:</h3>
